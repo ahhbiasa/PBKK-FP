@@ -5,7 +5,7 @@ import (
 )
 
 type Category struct {
-	Id        uint
+	Id        int
 	Name      string
 	CreatedAt time.Time
 	UpdatedAt time.Time
