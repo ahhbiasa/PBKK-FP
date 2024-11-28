@@ -32,6 +32,7 @@ func Add(w http.ResponseWriter, r *http.Request) {
 
 		temp.Execute(w, nil)
 	}
+
 	if r.Method == "POST" {
 		var category entities.Category
 
