@@ -8,19 +8,19 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand text-light" href="/">Go CRUD</a>
+          <a class="navbar-brand" href="/">Go CRUD</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link active text-light" href="/products">Products</a>
+                <a class="nav-link active" href="/products">Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active text-light" href="/categories">Categories</a>
+                <a class="nav-link active" href="/categories">Categories</a>
               </li>
             </ul>
           </div>
@@ -63,4 +63,42 @@
         </div>
     </div>
   </body>
+
+  <style>
+    body {
+      background-color: #FFECC8; /* Dark navy background */
+      color: #ffffff; /* White text */
+    }
+    nav {
+      background-color: #FFD09B; /* Slightly lighter navy */
+    }
+    .navbar-brand {
+      color: #1e2a3a;
+    }
+    .nav-link {
+      color: #1e2a3a;
+    }
+    h2 {
+      color: #C96868; /* Light blue for headings */
+    }
+    .btn-primary {
+      background-color: #FFB0B0;
+      border: none;
+    }
+    .btn-secondary {
+      background-color: #FFB0B0;
+    }
+    .btn-primary:hover {
+      background-color: #FFD09B;
+      border: none;
+    }
+    .form-control {
+      background-color: #FFD09B;
+      color: #ffffff;
+      border: 1px solid #FFD09B;
+    }
+    label {
+      color: #C96868;
+    }
+  </style>
 </html>
