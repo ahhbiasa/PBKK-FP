@@ -19,15 +19,15 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item px-1">
-                  <a class="btn btn-primary" href="/shops">Shops</a>
+                <a class="btn btn-primary" href="/shops">Shops</a>
               </li>
               <li class="nav-item px-1">
-                  <a class="btn btn-primary" href="/products">Products</a>
+                <a class="btn btn-primary" href="/products">Products</a>
               </li>
               <li class="nav-item px-1">
-                  <a class="btn btn-primary" href="/categories">Categories</a>
+                <a class="btn btn-primary" href="/categories">Categories</a>
               </li>
-          </ul>
+            </ul>
           </div>
         </div>
       </nav>
@@ -36,32 +36,22 @@
       <div class="container mt-3">
         <div class="row d-flex justify-content-center">
             <div class="col-4">
-                <h2>Product Details</h2>
+                <h2>Edit Product</h2>
                 <hr>
         
-                <form action="/products/details" method="POST">
+                <form action="/shops/edit" method="POST">
+                    <input type="hidden" name="id" value="{{ .shop.Id }}">
                     <div class="mb-3">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" autocomplete="off" value="{{ .product.Name }}" disabled>
+                        <input type="text" class="form-control" name="name" autocomplete="off" value="{{ .shop.Name }}">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Category</label>
-                        <input type="text" class="form-control" name="category_id" autocomplete="off" value="{{ .product.Category.Name }}" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Stock</label>
-                        <input type="number" class="form-control" name="stock" autocomplete="off" value="{{ .product.Stock }}" disabled>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Shop</label>
-                      <input type="text" class="form-control" name="shop_id" autocomplete="off" value="{{ .product.Shop.Name }}" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <textarea name="description" class="form-control" rows="3" disabled>{{ .product.Description }}</textarea>
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" name="address" autocomplete="off" value="{{ .shop.Address }}">
                     </div>
                     <div class="float-end">
-                        <a href="/products" class="btn btn-secondary">Back</a>
+                        <a href="/shops" class="btn btn-secondary">Back</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
@@ -71,11 +61,11 @@
   
   <style>
     body {
-      background-color: #FFECC8; /* Dark navy background */
-      color: #ffffff; /* White text */
+      background-color: #B6A28E;
+      color: #ffffff;
     }
     nav {
-      background-color: #FFD09B; /* Slightly lighter navy */
+      background-color: #9A7E6F;
     }
     .navbar-brand {
       color: #1e2a3a;
@@ -84,26 +74,32 @@
       color: #1e2a3a;
     }
     h2 {
-      color: #C96868; /* Light blue for headings */
+      color: #54473F;
+    }
+    .thick-hr {
+      background-color: #54473F;
+      height: 2px; 
+      border: none; 
+    }
+    h3 {
+      color: #54473F;
     }
     .btn-primary {
-      background-color: #FFB0B0;
+      background-color: #54473F;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #FFAD60;
       border: none;
     }
     .btn-secondary {
-      background-color: #FFB0B0;
+      background-color: #6c757d;
     }
-    .btn-primary:hover {
-      background-color: #C96868;
-      border: none;
-    }
-    .form {
-      background-color: #FFD09B;
+    .table {
       color: #ffffff;
-      border: 1px solid #FFD09B;
     }
-    label {
-      color: #C96868;
+    .table-dark {
+      background-color: #1e2a3a;
     }
   </style>
 </html>

@@ -6,6 +6,7 @@ import (
 	"pbkk-fp/entities"
 	"pbkk-fp/models/categorymodel"
 	"pbkk-fp/models/productmodel"
+	"pbkk-fp/models/shopmodel"
 	"strconv"
 	"time"
 )
@@ -52,8 +53,12 @@ func Add(w http.ResponseWriter, r *http.Request) {
 		}
 
 		categories := categorymodel.GetAll()
+		shops := shopmodel.GetAll()
+
+		// Merge categories and shops into a single data map
 		data := map[string]any{
 			"categories": categories,
+			"shops":      shops,
 		}
 
 		temp.Execute(w, data)
@@ -91,6 +96,18 @@ func Add(w http.ResponseWriter, r *http.Request) {
 		}
 		product.Stock = stock
 
+		shopIDStr := r.FormValue("shop_id")
+		if shopIDStr == "" {
+			http.Error(w, "Shop ID is required", http.StatusBadRequest)
+			return
+		}
+		shopID, err := strconv.Atoi(shopIDStr)
+		if err != nil {
+			http.Error(w, "Invalid Shop ID", http.StatusBadRequest)
+			return
+		}
+		product.Shop.Id = shopID
+
 		product.Description = r.FormValue("description") // Fixed typo in "descripton"
 		product.Created_At = time.Now()
 		product.Updated_At = time.Now()
@@ -121,7 +138,9 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 
 		product := productmodel.Detail(id)
 		categories := categorymodel.GetAll()
+		shops := shopmodel.GetAll()
 		data := map[string]any{
+			"shops":      shops,
 			"categories": categories,
 			"product":    product,
 		}
@@ -166,6 +185,18 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		product.Stock = stock
+
+		shopIDStr := r.FormValue("shop_id")
+		if shopIDStr == "" {
+			http.Error(w, "Shop ID is required", http.StatusBadRequest)
+			return
+		}
+		shopID, err := strconv.Atoi(shopIDStr)
+		if err != nil {
+			http.Error(w, "Invalid Shop ID", http.StatusBadRequest)
+			return
+		}
+		product.Shop.Id = shopID
 
 		product.Description = r.FormValue("description") // Fixed typo in "descripton"
 		product.Updated_At = time.Now()

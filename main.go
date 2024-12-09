@@ -7,6 +7,7 @@ import (
 	"pbkk-fp/controllers/categorycontroller"
 	"pbkk-fp/controllers/homecontroller"
 	"pbkk-fp/controllers/productcontroller"
+	"pbkk-fp/controllers/shopcontroller"
 )
 
 func main() {
@@ -28,6 +29,13 @@ func main() {
 	http.HandleFunc("/products/detail", productcontroller.Detail)
 	http.HandleFunc("/products/edit", productcontroller.Edit)
 	http.HandleFunc("/products/delete", productcontroller.Delete)
+
+	// 4. Shops
+	http.HandleFunc("/shops", shopcontroller.Index)
+	http.HandleFunc("/shops/add", shopcontroller.Add)
+	http.HandleFunc("/shops/detail", shopcontroller.Detail)
+	http.HandleFunc("/shops/edit", shopcontroller.Edit)
+	http.HandleFunc("/shops/delete", shopcontroller.Delete)
 
 	log.Println("Server running on port 8080")
 	http.ListenAndServe(":8080", nil)

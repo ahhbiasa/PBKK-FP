@@ -19,6 +19,9 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item px-1">
+                <a class="btn btn-primary" href="/shops">Shops</a>
+              </li>
+              <li class="nav-item px-1">
                 <a class="btn btn-primary" href="/products">Products</a>
               </li>
               <li class="nav-item px-1">
@@ -43,6 +46,7 @@
                         <input type="text" class="form-control" name="name" autocomplete="off" value="{{ .product.Name }}">
                     </div>
                     <div class="mb-3">
+                      <label>Category</label>
                         <select name="category_id" class="form-select">
                             {{ range .categories }}
                                 <option value="{{ .Id }}">{{ .Name }}</option>
@@ -54,11 +58,19 @@
                         <input type="number" class="form-control" name="stock" autocomplete="off" value="{{ .product.Stock }}">
                     </div>
                     <div class="mb-3">
+                      <label>Shop</label>
+                      <select name="shop_id" class="form-select">
+                          {{ range .shops }}
+                              <option value="{{ .Id }}">{{ .Name }}</option>
+                          {{ end }}
+                      </select>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Description</label>
                         <textarea name="description" class="form-control" rows="3">{{ .product.Description }}</textarea>
                     </div>
                     <div class="float-end">
-                        <a href="/products" class="btn btn-secondary">Back</a>
+                        <a href="/products" class="btn btn-primary">Back</a>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
@@ -82,7 +94,7 @@
       color: #1e2a3a;
     }
     h2 {
-      color: #C96868; /* Light blue for headings */
+      color: #C96868; 
     }
     .btn-primary {
       background-color: #FFB0B0;

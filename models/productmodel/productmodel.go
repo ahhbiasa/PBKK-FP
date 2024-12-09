@@ -12,11 +12,13 @@ func GetAll() []entities.Product {
 			products.name,
 			categories.name AS category_name,
 			products.stock,
+			shops.name AS shop_name,
 			products.description,
 			products.created_At,
 			products.updated_At
 		FROM products
 		JOIN categories ON products.category_id = categories.id
+		JOIN shops ON products.shop_id = shops.id
 	`)
 
 	if err != nil {
@@ -34,6 +36,7 @@ func GetAll() []entities.Product {
 			&product.Name,
 			&product.Category.Name,
 			&product.Stock,
+			&product.Shop.Name,
 			&product.Description,
 			&product.Created_At,
 			&product.Updated_At,
@@ -51,11 +54,12 @@ func GetAll() []entities.Product {
 
 func Create(product entities.Product) bool {
 	result, err := config.DB.Exec(`
-	INSERT INTO products (name, category_id, stock, description, created_at, updated_at)
-	VALUES (?, ?, ?, ?, ?, ?)`,
+	INSERT INTO products (name, category_id, stock, shop_id, description, created_at, updated_at)
+	VALUES (?, ?, ?, ?, ?, ?, ?)`,
 		product.Name,
 		product.Category.Id,
 		product.Stock,
+		product.Shop.Id,
 		product.Description,
 		product.Created_At,
 		product.Updated_At,
@@ -81,11 +85,13 @@ func Detail(id int) entities.Product {
 			products.name,
 			categories.name AS category_name,
 			products.stock,
+			shops.name AS shop_name,
 			products.description,
 			products.created_At,
 			products.updated_At
 		FROM products
 		JOIN categories ON products.category_id = categories.id
+		JOIN shops ON products.shop_id = shops.id
 		where products.id = ?
 	`, id)
 
@@ -96,6 +102,7 @@ func Detail(id int) entities.Product {
 		&product.Name,
 		&product.Category.Name,
 		&product.Stock,
+		&product.Shop.Name,
 		&product.Description,
 		&product.Created_At,
 		&product.Updated_At,
@@ -114,6 +121,7 @@ func Update(id int, product entities.Product) bool {
 			name = ?,
 			category_id = ?,
 			stock = ?,
+			shop_id = ?,
 			description = ?,
 			updated_at = ?
 		where id = ?
@@ -121,6 +129,7 @@ func Update(id int, product entities.Product) bool {
 		product.Name,
 		product.Category.Id,
 		product.Stock,
+		product.Shop.Id,
 		product.Description,
 		product.Updated_At,
 		id,
